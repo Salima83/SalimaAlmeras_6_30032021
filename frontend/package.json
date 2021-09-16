@@ -1,0 +1,28 @@
+{
+  "name": "hot-takes",
+  "version": "1.0.0",
+  "description": "Here are the dependancies you need to install:\r - NodeJS 12.14 or 14.0.\r - Angular CLI 7.0.2.\r - node-sass : make sure to use the corresponding version to NodeJS. For Noe 14.0 for instance, you need node-sass in version 4.14+.",
+  "main": "index.html",
+  "scripts": {
+    "start": "run-script-os",
+    "start:linux:darwin": "concurrently \"node ./node_modules/.bin/http-server -a localhost -p 8081\"  \"sleep 1 && open http://localhost:8081\"",
+    "start:win32": "node node_modules/live-server/live-server --port=8081"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "http-server": "^13.0.2",
+    "live-server": "^1.2.1",
+    "run-script-os": "^1.0.7"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpenClassrooms-Student-Center/Web-Developer-P6.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OpenClassrooms-Student-Center/Web-Developer-P6/issues"
+  },
+  "homepage": "https://github.com/OpenClassrooms-Student-Center/Web-Developer-P6#readme"
+}
