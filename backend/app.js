@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 
+const helmet = require("helmet");
+
 const sauceRoutes = require('./routes/sauce');
 const userRoutes =require('./routes/user');
 
@@ -17,6 +19,8 @@ const userRoutes =require('./routes/user');
  
 
 const app = express();
+
+app.use(helmet());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
