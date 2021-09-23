@@ -18,13 +18,20 @@ const userRoutes =require('./routes/user');
 ///
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100 // limit each IP to 100 requests per windowMs
+  max: 100, // limit each IP to 100 requests per windowMs
+  handler: function (req, res,) {
+    return res.status(429).json({
+      error: 'Vous avez envoyé trop de requetes, merci de patienter'
+    })
+}
+
 });
  
 
 const app = express();
 
 app.use(helmet());
+app.use(limiter);
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -40,6 +47,6 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/sauces',sauceRoutes);
 app.use('/api/auth' , userRoutes);
 ///
-app.use(limiter);
+
 
 module.exports = app;
