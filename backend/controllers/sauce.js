@@ -42,7 +42,7 @@ exports.modifySauce = (req, res, next) => {
     //tester si l'auteur est bien le meme que celui qui fait la requete.
 
     const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+    const decodedToken = jwt.verify(token, process.env.DB_TOKEN);
     const userId = decodedToken.userId;
     if (userId !== sauceObject.userId){
       res.status(403).json({ message : "seul l'auteur peut faire cette requete"});
@@ -58,7 +58,7 @@ exports.deleteSauce = (req, res, next) => {
     .then(sauce => {
       //seul l'auteur d'une sauce peut supprimer celle-ci
     const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+    const decodedToken = jwt.verify(token, process.env.DB_TOKEN);
     const userId = decodedToken.userId;
     if (userId !== sauce.userId){
       res.status(403).json({ message : "seul l'auteur d'une sauce peut supprimer celle-ci"});
